@@ -1,203 +1,61 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burmese Festivals — Burmese 12 Months</title>
 
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-  <title>SequenceCalculator</title>
-
-  <link rel="stylesheet" href="style.css" />
-
+  <!-- CSS -->
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
+  <!-- Background aura -->
+  <div class="bg-aura" aria-hidden="true"></div>
 
-  <div class="bg-glow"></div>
+  <div class="container">
+    <!-- Header -->
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-icon" title="Dharma Wheel Symbol" aria-hidden="true">
+          <!-- Dharma Wheel (simple SVG) -->
+          <svg viewBox="0 0 64 64" class="dharma">
+            <circle cx="32" cy="32" r="22" class="dharma-ring"></circle>
+            <circle cx="32" cy="32" r="6" class="dharma-core"></circle>
+            <g class="dharma-spokes">
+              <line x1="32" y1="10" x2="32" y2="22"></line>
+              <line x1="32" y1="42" x2="32" y2="54"></line>
+              <line x1="10" y1="32" x2="22" y2="32"></line>
+              <line x1="42" y1="32" x2="54" y2="32"></line>
+              <line x1="17" y1="17" x2="25" y2="25"></line>
+              <line x1="39" y1="39" x2="47" y2="47"></line>
+              <line x1="47" y1="17" x2="39" y2="25"></line>
+              <line x1="25" y1="39" x2="17" y2="47"></line>
+            </g>
+          </svg>
+        </div>
 
+        <div class="brand-text">
+          <div class="kicker">Burmese 12 Months and</div>
 
-
-  <header class="topbar">
-
-    <div class="brand">
-
-      <div class="logo">SF</div>
-
-      <div>
-
-        <h1>SequenceCalculator</h1>
-
-        <p class="subtitle">A premium toolbox for sequences — terms, sums, and more.</p>
-
+          <div class="title">Burmese Festivals</div>
+        </div>
       </div>
-
-    </div>
-
-    <div class="pill">Math • Fast • Easy</div>
-
-  </header>
-
-
-
-  <main class="container">
-
-    <section class="card">
-
-      <h2>Choose a calculation</h2>
-
-      <p class="muted">Tap a button. We’ll show only the inputs you need.</p>
-
-
-
-      <div class="mode-grid" id="modeGrid">
-
-        <button class="mode-btn active" data-mode="arith_n">Arithmetic: n-th term (aₙ)</button>
-
-        <button class="mode-btn" data-mode="arith_s">Arithmetic: sum (Sₙ)</button>
-
-        <button class="mode-btn" data-mode="geo_n">Geometric: n-th term (aₙ)</button>
-
-        <button class="mode-btn" data-mode="geo_s">Geometric: sum (Sₙ)</button>
-
-        <button class="mode-btn" data-mode="geo_inf">Geometric: infinite sum (S∞)</button>
-
-        <button class="mode-btn" data-mode="harm_n">Harmonic: n-th term</button>
-
-        <button class="mode-btn" data-mode="quad_n">Quadratic: n-th term</button>
-
-      </div>
-
-    </section>
-
-
-
-    <section class="card">
-
-      <div class="row">
-
-        <div>
-
-          <h2>How to use</h2>
-
-          <p class="muted" id="helpText"></p>
-
-        </div>
-
-        <div class="actions">
-
-          <button class="ghost" id="clearBtn" type="button">Clear</button>
-
-          <button class="primary" id="calcBtn" type="button">Calculate</button>
-
-        </div>
-
-      </div>
-
-
-
-      <div class="form-grid">
-
-        <div class="field" data-field="a1">
-
-          <label for="a1">a1 <span class="hint">first term</span></label>
-
-          <input id="a1" type="number" step="any" placeholder="e.g. 5" />
-
-        </div>
-
-
-
-        <div class="field" data-field="d">
-
-          <label for="d">d <span class="hint">difference</span></label>
-
-          <input id="d" type="number" step="any" placeholder="e.g. 2" />
-
-        </div>
-
-
-
-        <div class="field" data-field="r">
-
-          <label for="r">r <span class="hint">ratio</span></label>
-
-          <input id="r" type="number" step="any" placeholder="e.g. 3" />
-
-        </div>
-
-
-
-        <div class="field" data-field="n">
-
-          <label for="n">n <span class="hint">term number</span></label>
-
-          <input id="n" type="number" step="1" placeholder="e.g. 10" />
-
-        </div>
-
-
-
-        <div class="field" data-field="A">
-
-          <label for="A">A <span class="hint">quadratic</span></label>
-
-          <input id="A" type="number" step="any" placeholder="e.g. 2" />
-
-        </div>
-
-
-
-        <div class="field" data-field="B">
-
-          <label for="B">B <span class="hint">quadratic</span></label>
-
-          <input id="B" type="number" step="any" placeholder="e.g. -3" />
-
-        </div>
-
-
-
-        <div class="field" data-field="C">
-
-          <label for="C">C <span class="hint">quadratic</span></label>
-
-          <input id="C" type="number" step="any" placeholder="e.g. 7" />
-
-        </div>
-
-      </div>
-
-
-
-      <div class="result-wrap">
-
-        <div class="result-title">Result</div>
-
-        <div id="result" class="result">—</div>
-
-        <div id="error" class="error" aria-live="polite"></div>
-
-      </div>
-
-    </section>
-
-
+    </header>
+
+    <!-- App root -->
+    <main id="app" aria-live="polite">
+      <!-- app.js will render everything here -->
+      <noscript>Please enable JavaScript to view this project.</noscript>
+    </main>
 
     <footer class="footer">
-
-      <span>Design by <strong>Sophieeee!</strong> ✨</span>
-
+      Presented by Thomax and Ezio • None of these photos are mine; I borrowed them from Google, Pinterest, and TikTok, so full credit goes to the original owners.
     </footer>
+  </div>
 
-  </main>
-
-
-
-  <script src="script.js"></script>
-
+  <!-- IMPORTANT: defer prevents JS from running before HTML exists -->
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
 </body>
-
 </html>
