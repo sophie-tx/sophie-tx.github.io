@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SequenceForge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">SF</div>
+      <div>
+        <h1>SequenceForge</h1>
+        <p class="subtitle">A premium toolbox for sequences — terms, sums, and more.</p>
+      </div>
+    </div>
+    <div class="pill">Math • Fast • Clean</div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Choose a calculation</h2>
+      <p class="muted">Tap a button. We’ll show only the inputs you need.</p>
+
+      <div class="mode-grid" id="modeGrid">
+        <button class="mode-btn active" data-mode="arith_n">Arithmetic: n-th term (aₙ)</button>
+        <button class="mode-btn" data-mode="arith_s">Arithmetic: sum (Sₙ)</button>
+        <button class="mode-btn" data-mode="geo_n">Geometric: n-th term (aₙ)</button>
+        <button class="mode-btn" data-mode="geo_s">Geometric: sum (Sₙ)</button>
+        <button class="mode-btn" data-mode="geo_inf">Geometric: infinite sum (S∞)</button>
+        <button class="mode-btn" data-mode="harm_n">Harmonic: n-th term</button>
+        <button class="mode-btn" data-mode="quad_n">Quadratic: n-th term</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <div>
+          <h2>How to use</h2>
+          <p class="muted" id="helpText"></p>
+        </div>
+        <div class="actions">
+          <button class="ghost" id="clearBtn" type="button">Clear</button>
+          <button class="primary" id="calcBtn" type="button">Calculate</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field" data-field="a1">
+          <label for="a1">a1 <span class="hint">first term</span></label>
+          <input id="a1" type="number" step="any" placeholder="e.g. 5" />
+        </div>
+
+        <div class="field" data-field="d">
+          <label for="d">d <span class="hint">difference</span></label>
+          <input id="d" type="number" step="any" placeholder="e.g. 2" />
+        </div>
+
+        <div class="field" data-field="r">
+          <label for="r">r <span class="hint">ratio</span></label>
+          <input id="r" type="number" step="any" placeholder="e.g. 3" />
+        </div>
+
+        <div class="field" data-field="n">
+          <label for="n">n <span class="hint">term number</span></label>
+          <input id="n" type="number" step="1" placeholder="e.g. 10" />
+        </div>
+
+        <div class="field" data-field="A">
+          <label for="A">A <span class="hint">quadratic</span></label>
+          <input id="A" type="number" step="any" placeholder="e.g. 2" />
+        </div>
+
+        <div class="field" data-field="B">
+          <label for="B">B <span class="hint">quadratic</span></label>
+          <input id="B" type="number" step="any" placeholder="e.g. -3" />
+        </div>
+
+        <div class="field" data-field="C">
+          <label for="C">C <span class="hint">quadratic</span></label>
+          <input id="C" type="number" step="any" placeholder="e.g. 7" />
+        </div>
+      </div>
+
+      <div class="result-wrap">
+        <div class="result-title">Result</div>
+        <div id="result" class="result">—</div>
+        <div id="error" class="error" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Design by <strong>Sophieeee!</strong> ✨</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
