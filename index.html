@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SequenceForge • Multi Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">SF</div>
+        <div class="brandText">
+          <div class="title">SequenceForge</div>
+          <div class="subtitle">Math • Fast • Clean</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="navBtn active" data-target="panel-sf">
+          <span class="navIcon">🧮</span><span>SF Calculator</span>
+        </button>
+
+        <button class="navBtn" data-target="panel-trig">
+          <span class="navIcon">📐</span><span>Triangle Calculator</span>
+        </button>
+
+        <button class="navBtn" data-target="panel-notes">
+          <span class="navIcon">📝</span><span>Notes</span>
+        </button>
+      </nav>
+
+      <div class="sidebarFooter">
+        <div class="hint">Tip: Use search in Notes ✨</div>
+        <div class="credit">Design by Sophieeee! ✨</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- =======================
+           PANEL 1: SF CALCULATOR
+      ======================== -->
+      <section id="panel-sf" class="panel show">
+        <header class="panelHeader">
+          <h1>SF Calculator</h1>
+          <p>Sequences + formulas (working).</p>
+        </header>
+
+        <div class="card">
+          <h2 class="cardTitle">Choose a calculation</h2>
+          <p class="muted">Pick a tool, fill the inputs, then calculate.</p>
+
+          <div class="gridButtons">
+            <button class="softBtn sfTool active" data-tool="arith_n">Arithmetic: n-th term (aₙ)</button>
+            <button class="softBtn sfTool" data-tool="arith_s">Arithmetic: sum (Sₙ)</button>
+            <button class="softBtn sfTool" data-tool="geo_n">Geometric: n-th term (aₙ)</button>
+            <button class="softBtn sfTool" data-tool="geo_s">Geometric: sum (Sₙ)</button>
+            <button class="softBtn sfTool" data-tool="geo_inf">Geometric: infinite sum (S∞)</button>
+            <button class="softBtn sfTool" data-tool="harm_n">Harmonic: n-th term</button>
+            <button class="softBtn sfTool" data-tool="quad_n">Quadratic: n-th term</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Dynamic SF inputs -->
+          <div id="sfForm" class="formGrid"></div>
+
+          <div class="row">
+            <button class="btnGhost" type="button" id="sfClear">Clear</button>
+            <button class="btnPrimary" type="button" id="sfCalc">Calculate</button>
+          </div>
+
+          <div class="resultBox">
+            <div class="resultLabel">Result</div>
+            <div class="resultValue" id="sfOut">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           PANEL 2: TRIG CALCULATOR
+      ======================== -->
+      <section id="panel-trig" class="panel">
+        <header class="panelHeader">
+          <h1>Triangle Calculator</h1>
+          <p>Right triangle solver: enter angle α + one side → get unknown side(s).</p>
+        </header>
+
+        <div class="card">
+          <h2 class="cardTitle">Solve right triangle (sin / cos / tan / cot)</h2>
+          <p class="muted">Angle is α in degrees. Triangle must be right-angled.</p>
+
+          <div class="trigLayout">
+            <!-- LEFT: inputs -->
+            <div class="trigLeft">
+              <div class="compactField">
+                <label>Angle α (degrees)</label>
+                <input id="triAngle" class="inputCompact" type="number" step="any" placeholder="e.g. 63" />
+                <div class="muted tiny">Use 0 &lt; α &lt; 90</div>
+              </div>
+
+              <div class="compactField" style="margin-top:12px;">
+                <label>Known side value</label>
+                <input id="triKnownValue" class="inputCompact" type="number" step="any" placeholder="e.g. 2" />
+                <div class="muted tiny">Side is relative to angle α</div>
+              </div>
+
+              <!-- Only used in “Two Sides → Angle” mode -->
+              <div class="compactField" id="triSecondWrap" style="margin-top:12px; display:none;">
+                <label>Second side (hypotenuse)</label>
+                <input id="triKnownValue2" class="inputCompact" type="number" step="any" placeholder="e.g. 4.5" />
+                <div class="muted tiny">Two-sides mode assumes: value1 = adjacent, value2 = hypotenuse</div>
+              </div>
+            </div>
+
+            <!-- RIGHT: button controls -->
+            <div class="trigRight">
+              <div class="span2">
+                <label>Known side</label>
+
+                <!-- this value is controlled by buttons -->
+                <input type="hidden" id="triKnownType" value="adj" />
+
+                <div class="btnGroup small" id="triKnownGroup">
+                  <button class="chipBtn active" type="button" data-value="adj">Adjacent</button>
+                  <button class="chipBtn" type="button" data-value="opp">Opposite</button>
+                  <button class="chipBtn" type="button" data-value="hyp">Hypotenuse</button>
+                  <button class="chipBtn" type="button" data-value="two">Two Sides → Angle</button>
+                </div>
+
+                <div class="muted tiny">Side is relative to angle α</div>
+              </div>
+
+              <div class="span2" style="margin-top:12px;">
+                <label>What do you want to find?</label>
+
+                <!-- this value is controlled by buttons -->
+                <input type="hidden" id="triFind" value="all" />
+
+                <div class="btnGroup small" id="triFindGroup">
+                  <button class="chipBtn active" type="button" data-value="all">All</button>
+                  <button class="chipBtn" type="button" data-value="opp">Opposite</button>
+                  <button class="chipBtn" type="button" data-value="adj">Adjacent</button>
+                  <button class="chipBtn" type="button" data-value="hyp">Hypotenuse</button>
+                </div>
+
+                <div class="muted tiny" style="margin-top:6px;">In “Two Sides → Angle” mode, this section is ignored.</div>
+              </div>
+            </div>
+          </div>
+</div>
+
+          <div class="row">
+            <button class="btnGhost" type="button" id="triClear">Clear</button>
+            <button class="btnPrimary" type="button" id="triCalc">Calculate</button>
+          </div>
+
+          <div class="resultBox">
+            <div class="resultLabel">Result</div>
+            <div class="resultValue" id="triOut">—</div>
+          </div>
+
+          <div class="noteBox">
+            <b>Formulas used</b><br/>
+            sin(α)=opp/hyp, cos(α)=adj/hyp, tan(α)=opp/adj, cot(α)=adj/opp
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================
+           PANEL 3: NOTES
+      ======================== -->
+      <section id="panel-notes" class="panel">
+        <header class="panelHeader">
+          <h1>Notes</h1>
+          <p>Scroll down to read more. Each topic has its own color tone.</p>
+        </header>
+
+        <div class="card">
+          <div class="notesTop">
+            <input id="notesSearch" class="search" type="text"
+              placeholder="Search notes... (circle, tangent, parallel, sin, cos...)" />
+            <div class="muted tiny">Search filters topics instantly.</div>
+          </div>
+        </div>
+
+        <div class="notesWrap" id="notesWrap">
+          <article class="noteTopic tone-angles" data-keywords="angles acute obtuse right straight reflex full turn convex concave">
+            <h2>Angles</h2>
+            <ul>
+              <li><b>Acute:</b> 0° &lt; x &lt; 90°</li>
+              <li><b>Right:</b> x = 90°</li>
+              <li><b>Obtuse:</b> 90° &lt; x &lt; 180°</li>
+              <li><b>Straight:</b> x = 180°</li>
+              <li><b>Reflex:</b> 180° &lt; x &lt; 360°</li>
+              <li><b>Convex:</b> 0° &lt; x &lt; 180°</li>
+              <li><b>Concave / reflex:</b> 180° &lt; x &lt; 360°</li>
+            </ul>
+          </article>
+
+          <article class="noteTopic tone-tri" data-keywords="triangle acute right obtuse equilateral isosceles">
+            <h2>Triangles</h2>
+            <ul>
+              <li><b>Acute triangle:</b> all angles &lt; 90°</li>
+              <li><b>Right triangle:</b> one angle = 90°</li>
+              <li><b>Obtuse triangle:</b> one angle &gt; 90°</li>
+              <li><b>Equilateral:</b> all sides equal (all angles 60°)</li>
+              <li><b>Isosceles:</b> two sides equal (two base angles equal)</li>
+            </ul>
+          </article>
+
+          <article class="noteTopic tone-trig" data-keywords="trigonometry sin cos tan cot opposite adjacent hypotenuse">
+            <h2>Right-triangle Trigonometry</h2>
+            <ul>
+              <li><b>sin(α)</b> = opposite / hypotenuse</li>
+              <li><b>cos(α)</b> = adjacent / hypotenuse</li>
+              <li><b>tan(α)</b> = opposite / adjacent</li>
+              <li><b>cot(α)</b> = adjacent / opposite</li>
+            </ul>
+          </article>
+
+          <article class="noteTopic tone-lines" data-keywords="parallel lines angles alternate corresponding vertical opposite straight line 180">
+            <h2>Parallel Lines & Angles</h2>
+            <ul>
+              <li><b>Vertically opposite angles</b> are equal.</li>
+              <li><b>Corresponding angles</b> are equal (if lines are parallel).</li>
+              <li><b>Alternate angles</b> are equal (if lines are parallel).</li>
+              <li><b>Angles on a straight line</b> add to 180°.</li>
+            </ul>
+          </article>
+
+          <article class="noteTopic tone-circles" data-keywords="circle radius diameter circumference area arc sector segment chord tangent">
+            <h2>Circles</h2>
+            <div class="noteGrid2">
+              <div class="noteBox"><b>Circumference</b><br/>C = 2πr</div>
+              <div class="noteBox"><b>Area</b><br/>A = πr²</div>
+              <div class="noteBox"><b>Arc length (θ degrees)</b><br/>L = (θ/360) · 2πr</div>
+              <div class="noteBox"><b>Sector area (θ degrees)</b><br/>A = (θ/360) · πr²</div>
+            </div>
+            <div class="noteBox" style="margin-top:12px;">
+              <b>Segment</b><br/>Segment = sector − triangle<br/>
+              Triangle (two radii): A△ = ½ · r² · sin(θ)
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
